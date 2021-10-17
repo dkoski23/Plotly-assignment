@@ -1,4 +1,7 @@
 function getIDs(){
+    //tie the function to the selDataset button in the html then
+    //use d3 select to get all of the unique ids in the names section
+    //of samples.json and put them as options on the page's dropdown 
         var selector = d3.select("#selDataset");
         // console.log(selector)
         d3.json("samples.json").then(function(data) {
@@ -16,19 +19,23 @@ function getIDs(){
 };
 getIDs()
 
-function getDemographics(){
+function getDemographics(sample){
+    //connect to the html sample-metadata table and access all metadata,
+    // then only display the stats for the person who has their id selected
+    //in the dropdown button using the filter function, which should
+    //create an array with only one object inside (the person's info)
     var selector = d3.select("#sample-metadata");
-    // console.log(selector)
-    d3.json("samples.json").then(function(metadata) {
-        // console.log(metadata);
-         var people = metadata.metadata;
-        // people.forEach(function(person) {
-        //     selector
-        //     .append("option")
-        //     .text(person)
-        //     .property("value", person)
-        // })   
-        console.log(people[0])     
+    d3.json("samples.json").then(function(data){
+        var metadata = data.metadata;
+        var resultsArray = metadata.filter(function(data){
+            return data.id === sample;
+        
+        })
+        console.log(resultsArray);
+        result = resultsArray[0]
+        console.log(result)
+        selector.append(Object.entries(result))
+        
     })
-};
-getDemographics()
+}
+getDemographics(940)
