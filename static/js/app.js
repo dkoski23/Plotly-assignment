@@ -10,6 +10,40 @@ function buildCharts(sample){
         var resultArray = samples.filter(function(data){
             return data.id === sample;
         })
+        var result = resultArray[0];
+        // console.log(result)
+
+        var otu_ids = result.otu_ids;
+        var otu_labels = result.otu_labels;
+        var sample_values = result.sample_values;
+        console.log(otu_ids);
+        console.log(otu_labels);
+        console.log(sample_values);
+
+        var bubbleLayout = {
+            title: "Bacteria Culters Per Sample",
+            margin: {t: 30},
+            hovermode: "closest",
+            xaxis: {title: "OTU ID"}
+        }
+
+        var bubbleData = [
+            {
+                x:otu_ids,
+                y: sample_values,
+                text: otu_labels,
+                mode: "markers",
+                marker: {
+                    size: sample_values,
+                    color: otu_ids,
+                    colorscale: "Earth"
+                }
+            }
+        ];
+
+        Plotly.newPlot("bubble", bubbleData, bubbleLayout);
+
+        var yticks = otu_ids.slice(0,10)
     })
 }
 
