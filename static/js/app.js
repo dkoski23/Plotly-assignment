@@ -1,3 +1,18 @@
+function buildMetadata(sample){
+    alert("Build Metadata")
+}
+
+function buildCharts(sample){
+    // alert("Build Charts")
+    d3.json("samples.json").then(function(data){
+        var samples = data.samples;
+        // console.log(samples)
+        var resultArray = samples.filter(function(data){
+            return data.id === sample;
+        })
+    })
+}
+
 function getIDs(){
     //tie the function to the selDataset button in the html then
     //use d3 select to get all of the unique ids in the names section
@@ -15,7 +30,8 @@ function getIDs(){
             })   
             // console.log(selector)
             var firstSample = sampleNames[0];
-            console.log(firstSample)     
+            console.log(firstSample);  
+            buildCharts(firstSample);   
         })
 };
 getIDs()
