@@ -6,15 +6,16 @@ function getIDs(){
         // console.log(selector)
         d3.json("samples.json").then(function(data) {
             // console.log(data);
-            var ids = data.names;
-            ids.forEach(function(id) {
+            var sampleNames = data.names;
+            sampleNames.forEach(function(name) {
                 selector
                 .append("option")
-                .text(id)
-                .property("value", id)
+                .text(name)
+                .property("value", name)
             })   
             // console.log(selector)
-            console.log(ids)     
+            var firstSample = sampleNames[0];
+            console.log(firstSample)     
         })
 };
 getIDs()
