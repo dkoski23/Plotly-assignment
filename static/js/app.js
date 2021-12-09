@@ -68,8 +68,7 @@ function buildChart(sample){
 
 
     var bar_samples = sample_values.slice(0, 10);
-    // // Error: Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'slice')
-    // Just using 'otu_labels' works - no need to slice 
+
     // var bar_lables = otu_lables.slice(0, 10)
     var bar_lables = otu_lables;
 
